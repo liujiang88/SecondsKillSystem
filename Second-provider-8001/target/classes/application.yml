@@ -1,0 +1,41 @@
+server:
+  port: 8001
+spring:
+  datasource:
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckil?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: springcloud-provider-dept
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.liu.second.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: liu_8001
+info:
+  app.name: liu deom
+  company.name: liu
+
+

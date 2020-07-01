@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.liu.second.dao.userMapper">
+    <sql id="userPojo">
+       id,user_name,password
+   </sql>
+
+    <select id="selectUserById" resultType="com.liu.second.entity.user">
+        select <include refid="userPojo"></include>
+        from user
+        <where>
+            <choose>
+                <when test="id!=null and id!=0">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    id=1
+                </otherwise>
+            </choose>
+
+        </where>
+    </select>
+</mapper>
